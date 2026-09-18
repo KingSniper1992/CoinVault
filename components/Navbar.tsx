@@ -1,7 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 export function Navbar() {
+  const router = useRouter();
+  const supabase = createClient();
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push("/");
+  };
+
   return (
     <header className="bg-[#15181e] text-white border-b-4 border-[#facc15] px-4 py-2.5 shadow-md relative z-30" data-purpose="navbar">
       <div className="max-w-[1480px] mx-auto flex items-center justify-between">
@@ -56,7 +68,11 @@ export function Navbar() {
             </svg>
           </div>
           {/* Logout button */}
-          <button type="button" className="flex items-center space-x-2 border-2 border-[#ca8a04] hover:bg-[#ca8a04]/20 text-[#fef08a] px-3.5 py-1.5 rounded-md text-xs sm:text-sm font-bold transition-all shadow-sm">
+          <button 
+            type="button" 
+            onClick={handleLogout}
+            className="flex items-center space-x-2 border-2 border-[#ca8a04] hover:bg-[#ca8a04]/20 text-[#fef08a] px-3.5 py-1.5 rounded-md text-xs sm:text-sm font-bold transition-all shadow-sm cursor-pointer"
+          >
             <svg className="w-4 h-4 text-[#facc15]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
             </svg>

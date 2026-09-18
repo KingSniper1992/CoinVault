@@ -2,14 +2,46 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const router = useRouter();
+  const supabase = createClient();
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrorMsg("");
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: username,
+        password,
+      });
+
+      if (error) {
+        setErrorMsg("Credenciales inválidas. Por favor intenta de nuevo.");
+        setLoading(false);
+      } else {
+        router.push("/dashboard");
+      }
+    } catch (err: any) {
+      console.error(err);
+      setErrorMsg("Ocurrió un error inesperado. Revisa la consola.");
+      setLoading(false);
+    }
+  };
 
   return (
     <main className="w-full h-screen overflow-hidden flex flex-col lg:flex-row relative">
       {/* Left Hero Section */}
-      <section 
+      <section
         className="w-full lg:w-[42%] pixel-night-bg text-white relative flex flex-col items-center justify-between p-4 sm:p-8 lg:py-10 lg:px-12 border-r-4 border-black/40 shadow-2xl"
         data-purpose="hero-retro-branding"
       >
@@ -36,9 +68,9 @@ export default function LoginPage() {
         <div className="w-full flex flex-col items-center justify-center my-auto py-6 z-10">
           <div className="relative group cursor-pointer flex-1 flex flex-col justify-center py-4">
             <div className="w-80 sm:w-96 md:w-[32rem] h-auto flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-              <Image 
+              <Image
                 src="/images/logo.png"
-                alt="Coin Vault Pixel Chest Logo" 
+                alt="Coin Vault Pixel Chest Logo"
                 width={500}
                 height={500}
                 className="w-full object-contain pixelated drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]"
@@ -79,8 +111,8 @@ export default function LoginPage() {
       </section>
 
       {/* Right Section: Crisp modern minimalist container for retro auth form */}
-      <section 
-        className="w-full lg:w-[58%] bg-[url('/images/bg.png')] bg-cover bg-center flex flex-col justify-between items-center p-6 sm:p-10 lg:p-14 relative" 
+      <section
+        className="w-full lg:w-[58%] bg-[url('/images/bg.png')] bg-cover bg-center flex flex-col justify-between items-center p-6 sm:p-10 lg:p-14 relative"
         data-purpose="login-form-wrapper"
       >
         <header className="w-full flex justify-end">
@@ -99,7 +131,7 @@ export default function LoginPage() {
           <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] border border-slate-200/60 p-8 sm:p-12 transition-all" data-purpose="auth-card">
             <div className="text-center mb-9">
               <h1 className="text-2xl sm:text-3xl font-pixel tracking-normal text-slate-900 leading-tight">
-                Bienvenido a<br/>
+                Bienvenido a<br />
                 <span className="text-slate-900">COIN </span><span className="text-vault-yellow">VAULT</span>
               </h1>
               <p className="text-slate-500 text-sm mt-4 font-medium">
@@ -107,10 +139,15 @@ export default function LoginPage() {
               </p>
             </div>
 
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={handleLogin}>
+              {errorMsg && (
+                <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm font-semibold border border-red-200">
+                  {errorMsg}
+                </div>
+              )}
               <div data-purpose="input-group-username">
                 <label className="block text-xs sm:text-sm font-semibold text-slate-800 mb-2" htmlFor="username">
-                  Usuario
+                  Correo electrónico
                 </label>
                 <div className="relative rounded-xl border border-slate-200 hover:border-slate-300 focus-within:border-amber-400 focus-within:ring-2 focus-within:ring-amber-200 transition-all bg-[#fcfdfe]">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
@@ -118,13 +155,16 @@ export default function LoginPage() {
                       <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path>
                     </svg>
                   </div>
-                  <input 
-                    type="text" 
-                    id="username" 
-                    name="username" 
-                    className="w-full pl-12 pr-4 py-3.5 bg-transparent border-0 text-sm text-slate-800 placeholder-slate-400 focus:ring-0 rounded-xl outline-none" 
-                    placeholder="Ingresa tu usuario" 
-                    required 
+                  <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-full pl-12 pr-4 py-3.5 bg-transparent border-0 text-sm text-slate-800 placeholder-slate-400 focus:ring-0 rounded-xl outline-none"
+                    placeholder="Ingresa tu correo"
+                    required
+                    disabled={loading}
                   />
                 </div>
               </div>
@@ -139,20 +179,24 @@ export default function LoginPage() {
                       <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"></path>
                     </svg>
                   </div>
-                  <input 
-                    type={showPassword ? "text" : "password"} 
-                    id="password" 
-                    name="password" 
-                    className="w-full pl-12 pr-12 py-3.5 bg-transparent border-0 text-sm text-slate-800 placeholder-slate-400 focus:ring-0 rounded-xl outline-none" 
-                    placeholder="Ingresa tu contraseña" 
-                    required 
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full pl-12 pr-12 py-3.5 bg-transparent border-0 text-sm text-slate-800 placeholder-slate-400 focus:ring-0 rounded-xl outline-none"
+                    placeholder="Ingresa tu contraseña"
+                    required
+                    disabled={loading}
                   />
-                  <button 
-                    type="button" 
-                    id="togglePassword" 
-                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 transition-colors" 
+                  <button
+                    type="button"
+                    id="togglePassword"
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 transition-colors"
                     aria-label="Toggle password visibility"
                     onClick={() => setShowPassword(!showPassword)}
+                    disabled={loading}
                   >
                     {!showPassword ? (
                       <svg id="eyeSlashIcon" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -175,9 +219,13 @@ export default function LoginPage() {
               </div>
 
               <div className="pt-2">
-                <button type="submit" className="btn-pixel-vault w-full py-4 px-6 bg-vault-yellow text-black font-pixel text-sm sm:text-base tracking-wider rounded-xl flex items-center justify-center gap-3 border-4 border-black group cursor-pointer">
-                  <span>OPEN VAULT</span>
-                  <span className="text-lg transition-transform group-hover:translate-x-1">&gt;</span>
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="btn-pixel-vault w-full py-4 px-6 bg-vault-yellow text-black font-pixel text-sm sm:text-base tracking-wider rounded-xl flex items-center justify-center gap-3 border-4 border-black group cursor-pointer disabled:opacity-70"
+                >
+                  <span>{loading ? "CARGANDO..." : "OPEN VAULT"}</span>
+                  {!loading && <span className="text-lg transition-transform group-hover:translate-x-1">&gt;</span>}
                 </button>
               </div>
             </form>
