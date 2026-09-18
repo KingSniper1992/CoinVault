@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CoinVault - Nuevo tipo de egreso</title>
+<!-- Tailwind CSS v3 with Forms & Container Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<!-- Google Fonts: Silkscreen / Press Start 2P / Outfit for clean crisp UI -->
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            pixel: ['"Press Start 2P"', 'monospace'],
+            sans: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            vaultDark: '#12141a',
+            vaultYellow: '#f5be18',
+            vaultYellowDark: '#d99e0b',
+            vaultRed: '#e74c3c',
+            vaultGreen: '#2ecc71',
+            vaultBlue: '#3498db',
+            vaultPurple: '#9b59b6',
+            vaultGray: '#6c7a89'
+          }
+        }
+      }
+    }
+  </script>
+<!-- Pixelated & Sky Backdrop Styles -->
+<style data-purpose="background-styles">
+    /* Pixel clouds and backdrop matching image 6 */
+    .sky-bg {
+      background: linear-gradient(180deg, #dce8f5 0%, #e9f0f8 60%, #dae5f2 100%);
+      background-attachment: fixed;
+      position: relative;
+    }
+    
+    /* Decorative pixel clouds */
+    .pixel-cloud {
+      position: absolute;
+      background: #ffffff;
+      opacity: 0.75;
+      box-shadow: 
+        0 -8px 0 0 #ffffff,
+        24px -16px 0 4px #ffffff,
+        56px -12px 0 2px #ffffff,
+        80px 0 0 0 #ffffff;
+      filter: drop-shadow(0 4px 0 rgba(190, 205, 225, 0.6));
+    }
+
+    /* Chunky Pixel Borders */
+    .pixel-border-gold {
+      border: 3px solid #f6be1a;
+      box-shadow: 0 0 0 1px #11141c, 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+    }
+
+    .pixel-btn-border {
+      border: 2.5px solid #14161f;
+      box-shadow: 0 3px 0 0 #14161f;
+    }
+
+    .pixel-btn-border:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 0 #14161f;
+    }
+  </style>
+</head>
+<body class="sky-bg min-h-screen font-sans text-slate-800 flex flex-col justify-between overflow-x-hidden select-none">
+<!-- BEGIN: MainHeader -->
+<header class="w-full bg-[#15171e] border-b-4 border-[#f7be1a] text-white px-4 md:px-8 py-2.5 flex items-center justify-between z-30 shadow-md">
+<!-- Brand Logo Area -->
+<div class="flex items-center gap-6">
+<a class="flex items-center gap-2.5 group" href="#">
+<img alt="Coin Vault" class="w-8 h-8 object-contain render-pixelated" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoq2nhklDyFqyXdkc_rtixXK_Sfxrf55XWax4Lc4FDWlY8pbiXG7SI7gcLXYD2XAQudH0PuLn6PhXeWYMxTQqOt2oU3vg59tf6pl62H7r3LZZ1xlkYCV0j3fbSPbME1J_33oGWWqq22Zzn0AX3w5QFyPhTrfyaEzF6TDLkxMWPv1m2F69IBUjWIjiYPSEF87oHoMMxE3Otd-aIJMaCMKrhRDvSqBi6svfckxK7wRPdfHXkICCWFfXaHiqcO18d4qt4">
+<div class="flex flex-col">
+<span class="font-pixel text-[13px] tracking-wider text-white flex items-center">
+            COIN&nbsp;<span class="text-[#f7be1a]">VAULT</span>
+</span>
+
+</div>
+</a>
+<!-- Primary Navigation Links -->
+<nav class="hidden md:flex items-center gap-2 ml-4">
+<a class="flex items-center gap-2 px-3.5 py-1.5 rounded text-sm text-[#ccd1df] hover:text-white transition-colors" href="#">
+<svg class="w-4 h-4 text-[#f7be1a]" fill="currentColor" viewBox="0 0 24 24">
+<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+</svg>
+<span class="">Dashboard</span>
+</a>
+<a class="flex items-center gap-2 px-3.5 py-1.5 rounded text-sm text-[#ccd1df] hover:text-white transition-colors" href="#">
+<svg class="w-4 h-4 text-[#2ecc71]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+<path d="M5 10l7-7m0 0l7 7m-7-7v18" stroke-linecap="square" stroke-linejoin="miter"></path>
+</svg>
+<span class="">Ingresos</span>
+</a>
+<a class="flex items-center gap-2 px-4 py-1 rounded-md text-sm text-[#f7be1a] bg-[#1d202a] border border-[#f7be1a] font-medium shadow-inner" href="#">
+<svg class="w-4 h-4 text-[#e74c3c]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+<path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="square" stroke-linejoin="miter"></path>
+</svg>
+<span class="">Egresos</span>
+</a>
+</nav>
+</div>
+<!-- User Profile & Log Out Area -->
+<div class="flex items-center gap-4">
+<div class="h-6 w-[1px] bg-slate-700 hidden sm:block"></div>
+<!-- User dropdown -->
+<button class="flex items-center gap-2 text-sm text-slate-200 hover:text-white focus:outline-none">
+<div class="w-7 h-7 rounded-full bg-[#f7be1a] border-2 border-black flex items-center justify-center text-xs overflow-hidden">
+<span class="text-black font-pixel text-[10px]">🧔</span>
+</div>
+<span class="font-medium text-xs sm:text-sm">Usuario</span>
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+<!-- Logout Button -->
+<a class="flex items-center gap-1.5 text-xs sm:text-sm text-[#f7be1a] border border-[#d39f15] hover:bg-[#282a36] px-3 py-1.5 rounded transition-all" href="#">
+<svg class="w-4 h-4 text-[#f7be1a]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">Cerrar sesión</span>
+</a>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- Background Decorative Cloud Pixel Elements -->
+<div class="pointer-events-none select-none absolute inset-0 overflow-hidden z-0">
+<!-- Top left pixel cloud -->
+<div class="pixel-cloud w-32 h-7 top-24 left-10 rounded-none"></div>
+<div class="pixel-cloud w-20 h-5 top-56 left-4 rounded-none opacity-40"></div>
+<!-- Top right pixel clouds -->
+<div class="pixel-cloud w-44 h-8 top-20 right-28 rounded-none opacity-80"></div>
+<div class="pixel-cloud w-28 h-6 top-36 right-8 rounded-none opacity-50"></div>
+<!-- Low subtle horizon silhouette -->
+<div class="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#c5d5e8]/50 to-transparent"></div>
+</div>
+<!-- BEGIN: MainContent -->
+<main class="relative z-10 flex-grow flex items-center justify-center p-4 sm:p-6 my-4">
+<!-- Modal Card Container -->
+<div class="w-full max-w-[530px] bg-white rounded-2xl pixel-border-gold p-7 sm:p-8 shadow-2xl relative" data-purpose="egreso-modal-card">
+<!-- Modal Header -->
+<div class="flex items-center gap-4 mb-6" data-purpose="modal-title-group">
+<!-- Target / Coin Icon Pixel Art Badge -->
+<div class="w-12 h-12 flex-shrink-0 relative flex items-center justify-center">
+<div class="w-12 h-12 rounded-full border-2 border-black bg-[#cf3c2a] flex items-center justify-center shadow-inner">
+<div class="w-9 h-9 rounded-full border-2 border-white/40 bg-[#e74c3c] flex items-center justify-center">
+<div class="w-5 h-5 rounded-full border border-black bg-[#f6be1a] flex items-center justify-center">
+<div class="w-2 h-2 rounded-sm bg-amber-100"></div>
+</div>
+</div>
+<!-- Arrow accent -->
+<div class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-black rotate-45 flex items-center justify-center">
+<div class="w-2 h-2 bg-amber-400"></div>
+</div>
+</div>
+</div>
+<div>
+<h1 class="text-xl sm:text-[22px] font-bold text-slate-900 tracking-tight leading-snug">
+            Nuevo tipo de egreso
+          </h1>
+<p class="text-xs sm:text-sm text-slate-500 font-medium">
+            Registra un nuevo concepto de egreso
+          </p>
+</div>
+</div>
+<!-- Form Inputs -->
+<form class="space-y-4" data-purpose="form-egreso" onsubmit="event.preventDefault();">
+<!-- Nombre del Egreso -->
+<div>
+<label class="block text-xs sm:text-sm font-semibold text-slate-800 mb-1.5" for="egreso-name">
+            Nombre del egreso
+          </label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<!-- Tag Icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V5a2 2 0 012-2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input class="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200 rounded-lg text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-amber-400 focus:border-amber-400" id="egreso-name" placeholder="Ej. Alimentación, Transporte, Servicios, etc." type="text">
+</div>
+</div>
+<!-- Descripción (opcional) -->
+<div>
+<label class="block text-xs sm:text-sm font-semibold text-slate-800 mb-1.5" for="egreso-desc">
+            Descripción (opcional)
+          </label>
+<div class="relative">
+<div class="absolute top-2.5 left-3.5 pointer-events-none text-slate-400">
+<!-- Chat / Speech bubble icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<textarea class="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200 rounded-lg text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-amber-400 focus:border-amber-400 resize-none" id="egreso-desc" placeholder="Agrega una breve descripción..." rows="3"></textarea>
+</div>
+</div>
+<!-- Color Selector -->
+<div>
+<label class="block text-xs sm:text-sm font-semibold text-slate-800 mb-1.5">
+            Color
+          </label>
+<div class="flex items-center gap-2.5 pt-0.5" data-purpose="color-picker-group">
+<!-- Active red color swatch with pixel border box -->
+<button class="w-7 h-7 rounded-md bg-[#e74c3c] border-2 border-slate-900 ring-2 ring-[#e74c3c]/40 ring-offset-1 transition-transform transform active:scale-95" title="Rojo" type="button"></button>
+<button class="w-7 h-7 rounded-md bg-[#3897f1] hover:opacity-90 border border-transparent transition-transform transform active:scale-95" title="Azul" type="button"></button>
+<button class="w-7 h-7 rounded-md bg-[#58be7d] hover:opacity-90 border border-transparent transition-transform transform active:scale-95" title="Verde" type="button"></button>
+<button class="w-7 h-7 rounded-md bg-[#f6be1a] hover:opacity-90 border border-transparent transition-transform transform active:scale-95" title="Amarillo" type="button"></button>
+<button class="w-7 h-7 rounded-md bg-[#aa66cc] hover:opacity-90 border border-transparent transition-transform transform active:scale-95" title="Morado" type="button"></button>
+<button class="w-7 h-7 rounded-md bg-[#6f8295] hover:opacity-90 border border-transparent transition-transform transform active:scale-95" title="Gris" type="button"></button>
+</div>
+</div>
+<!-- Estado Select Dropdown -->
+<div>
+<label class="block text-xs sm:text-sm font-semibold text-slate-800 mb-1.5" for="egreso-status">
+            Estado
+          </label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<!-- Coins / Database stack icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+<path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+<path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+</svg>
+</div>
+<select class="w-full pl-10 pr-9 py-2.5 bg-slate-50/70 border border-slate-200 rounded-lg text-xs sm:text-sm text-slate-800 font-medium appearance-none focus:outline-none focus:ring-1 focus:ring-amber-400 focus:border-amber-400 cursor-pointer" id="egreso-status">
+<option selected="" value="activo">Activo</option>
+<option value="inactivo">Inactivo</option>
+</select>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-500">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Action Buttons Footer -->
+<div class="pt-4 grid grid-cols-2 gap-4" data-purpose="form-actions">
+<button class="w-full py-2.5 px-4 bg-[#e8eef6] hover:bg-slate-200 text-slate-900 text-xs sm:text-sm font-bold rounded-lg pixel-btn-border transition-colors tracking-wide" type="button">
+            Cancelar
+          </button>
+<button class="w-full py-2.5 px-4 bg-[#f6be1a] hover:bg-[#e2ad10] text-slate-950 text-xs sm:text-sm font-bold rounded-lg pixel-btn-border flex items-center justify-center gap-2 transition-colors tracking-wide" type="submit">
+<!-- Floppy Disk Icon -->
+<svg class="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 24 24">
+<path d="M19.414 4.586L16.414 1.586C15.828 1 15.045 1 14.242 1H4C2.895 1 2 1.895 2 3V21C2 22.105 2.895 23 4 23H20C21.105 23 22 22.105 22 21V6.758C22 5.955 22 5.172 21.414 4.586ZM8 3H14V7H8V3ZM12 19C10.343 19 9 17.657 9 16C9 14.343 10.343 13 12 13C13.657 13 15 14.343 15 16C15 17.657 13.657 19 12 19Z"></path>
+</svg>
+<span class="">Guardar egreso</span>
+</button>
+</div>
+</form>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: BottomPixelStairs -->
+<!-- Pixel Stairs with Gold Coins in bottom right corner as per IMAGE_6 & IMAGE_7 -->
+<aside aria-hidden="true" class="fixed bottom-0 right-0 pointer-events-none z-10 w-44 sm:w-60 md:w-72 select-none">
+<img alt="Pixel brick steps and gold coins" class="w-full h-auto object-contain block drop-shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ97KlcSzF_faA4U90KkQlsH_Y-5YD6tOvz4rs2kU4i84pC-s06kiqX4KyOJvBSrK_4mcvNn7OW7pUXQPfiikorRrlnvra6zMy7wpXc-V0_aEmvLADN1mKRGiF3HcI_zHGKm8FDMOkze1T8Pic6lE3MPmwAR6S6OKLxvdSTopnQV5zzaZivsvaNimLu-IrxLdEzeySkv8oAizuI6Uy2qTPOc2TJc0nl0xCgd2L-fys28EbcJNaaD0hlkVd-YBqUIuj" style="image-rendering: pixelated;">
+</aside>
+<!-- END: BottomPixelStairs -->
+<!-- BEGIN: MainFooter -->
+<footer class="w-full py-4 text-center z-10 select-none pb-5" data-purpose="site-footer">
+<div class="flex items-center justify-center gap-4 max-w-sm mx-auto mb-1">
+<div class="h-[1px] bg-slate-300 flex-grow"></div>
+<div class="font-pixel text-[13px] tracking-wider text-slate-800">
+        COIN <span class="text-[#f6be1a]">VAULT</span>
+</div>
+<div class="h-[1px] bg-slate-300 flex-grow"></div>
+</div>
+<p class="text-[11px] font-medium text-slate-500">
+      Design by Doom Forge Studios
+    </p>
+</footer>
+<!-- END: MainFooter -->
+
+
+</body></html>

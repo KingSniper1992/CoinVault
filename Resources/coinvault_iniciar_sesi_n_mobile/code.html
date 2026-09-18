@@ -1,0 +1,269 @@
+<!DOCTYPE html><html class="h-full bg-black" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Coin Vault - Iniciar Sesión</title>
+<!-- Google Fonts: Pixelated and monospace fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=VT323&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'vault-bg': '#0a1017',
+            'vault-gold': '#fecb2e',
+            'vault-gold-dark': '#c88c14',
+            'vault-gold-light': '#ffeb78',
+            'vault-input-bg': '#141c26',
+            'vault-border': '#253447',
+            'vault-cyan': '#22384c',
+          },
+          fontFamily: {
+            pixel: ['"Press Start 2P"', 'monospace', 'sans-serif'],
+            silkscreen: ['"Silkscreen"', 'monospace', 'sans-serif'],
+            vt: ['"VT323"', 'monospace', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+<!-- Custom Pixel Art & Component Styling -->
+<style data-purpose="pixel-styling">
+    /* Pixel art border effects */
+    .pixel-border-input {
+      box-shadow: 
+        inset 0 0 0 2px #26384d,
+        0 0 0 2px #0f161f;
+      border-radius: 12px;
+    }
+    
+    .pixel-button-gold {
+      background: linear-gradient(180deg, #fcd848 0%, #fabc22 75%, #db8f0f 100%);
+      box-shadow: 
+        inset 0 3px 0 0 #fff69d,
+        inset 0 -4px 0 0 #b36e05,
+        0 4px 0 0 #4a2800,
+        0 5px 0 1px #0a0e14;
+      border: 3px solid #1a0f00;
+      border-radius: 14px;
+      transition: all 0.1s ease;
+    }
+    .pixel-button-gold:active {
+      transform: translateY(2px);
+      box-shadow: 
+        inset 0 2px 0 0 #fff69d,
+        inset 0 -2px 0 0 #b36e05,
+        0 2px 0 0 #4a2800;
+    }
+
+    /* Pixel rendering clarity */
+    .pixelated {
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+    }
+
+    /* Custom scrollbar hiding for clean app experience */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    * {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="h-full bg-[#05080c] flex items-center justify-center font-sans antialiased select-none text-white p-0 sm:p-4">
+<!-- BEGIN: PhoneFrame -->
+<div class="relative w-full max-w-[420px] h-[100dvh] max-h-[915px] bg-[#0c131d] overflow-hidden flex flex-col justify-between sm:rounded-[48px] sm:border-[10px] sm:border-[#222834] sm:shadow-[0_0_50px_rgba(0,0,0,0.8)]" data-purpose="phone-chassis">
+<!-- BEGIN: BackgroundElements -->
+<div class="absolute inset-0 pointer-events-none z-0 overflow-hidden" data-purpose="sky-scenery">
+<!-- Ambient pixel star crosses -->
+<svg class="absolute top-[8%] left-[12%] text-[#1c2c3d] w-3 h-3" fill="currentColor" viewBox="0 0 12 12">
+<path d="M4 0h4v4h4v4H8v4H4V8H0V4h4z"></path>
+</svg>
+<svg class="absolute top-[7%] right-[32%] text-[#1a2939] w-3 h-3" fill="currentColor" viewBox="0 0 12 12">
+<path d="M4 0h4v4h4v4H8v4H4V8H0V4h4z"></path>
+</svg>
+<svg class="absolute top-[28%] left-[7%] text-[#182635] w-2.5 h-2.5" fill="currentColor" viewBox="0 0 12 12">
+<path d="M4 0h4v4h4v4H8v4H4V8H0V4h4z"></path>
+</svg>
+<!-- Pixel Moon (top-left) -->
+<div class="absolute top-[9%] left-[16%] w-10 h-10 rounded-full opacity-60">
+<div class="w-full h-full bg-[#697f8c] rounded-full shadow-inner flex items-center justify-center relative overflow-hidden">
+<div class="absolute w-3 h-3 bg-[#4c5f6c] rounded-full top-1 left-2"></div>
+<div class="absolute w-2 h-2 bg-[#4c5f6c] rounded-full bottom-2 right-2"></div>
+<div class="absolute w-4 h-4 bg-[#394a56] rounded-full -bottom-1 left-1 opacity-70"></div>
+</div>
+</div>
+<!-- Stepped Pixel Clouds Left -->
+<div class="absolute top-[16%] -left-6 opacity-35">
+<div class="w-16 h-3 bg-[#182839] mb-1"></div>
+<div class="w-24 h-4 bg-[#142232] mb-1"></div>
+<div class="w-32 h-5 bg-[#101c2b]"></div>
+</div>
+<!-- Stepped Pixel Clouds Right -->
+<div class="absolute top-[13%] right-[2%] opacity-35 flex flex-col items-end">
+<div class="w-12 h-3 bg-[#1a2c3e] mb-1"></div>
+<div class="w-20 h-4 bg-[#142334] mb-1"></div>
+<div class="w-28 h-5 bg-[#101d2c]"></div>
+</div>
+</div>
+<!-- END: BackgroundElements -->
+<!-- BEGIN: TopStatusBarAndPill -->
+<header class="relative z-20 pt-3 px-7 flex items-center justify-between">
+<!-- Dynamic Island notch simulation -->
+<div class="absolute left-1/2 -translate-x-1/2 top-2.5 w-24 h-5 bg-black rounded-full flex items-center justify-center">
+<div class="w-2.5 h-2.5 bg-[#0a0f18] rounded-full ml-12"></div>
+</div>
+<!-- Time -->
+<span class="font-bold text-sm tracking-wide text-white">9:41</span>
+<!-- Status Icons -->
+
+</header>
+<!-- END: TopStatusBarAndPill -->
+<!-- BEGIN: MainContent -->
+<main class="relative z-10 flex-1 flex flex-col justify-start px-7 pt-1">
+<!-- Top-right motto -->
+<div class="w-full flex justify-end pr-1 mt-1 mb-1">
+<div class="text-right">
+
+<div class="w-full h-[2px] bg-[#fecb2e] mt-1"></div>
+</div>
+</div>
+<!-- Chest Art & Title Header -->
+<section class="flex flex-col items-center mt-[-6px]" data-purpose="hero-chest">
+<!-- Chest Icon cropped from reference asset -->
+<div class="relative w-52 h-52 flex items-center justify-center"><img alt="Coin Vault Pixel Art" class="pixelated w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdN2v3ExblZdzBnEl8j3Za5loESTk7UmkoU6ZxEIXPSWWakYEUuj7COMnq8lMFlOcvI6jAnqNHx8DOjx9EeB6zpHFtI7alAe-Nu5u50W-LjI7PenQd66mKf90VlhXaK6h_9A9yBNl4clKqQK1XZ0s8fPUf3eUAvK0LI7UVJxdbt-icILqnt2ZsYepyM1txhvThiOfklYmeKvnXZNhf3KPfX8BW-b42mtj8HbUxBlda74p7m-r3KfHkdPedWGwNBiHn"></div>
+<!-- Coin Vault Main Title -->
+<div class="flex items-center space-x-2 font-pixel text-2xl tracking-tighter mt-[-10px]">
+
+
+</div>
+<!-- Subtitle -->
+
+<!-- Small decorative gold divider line -->
+<div class="w-8 h-[2.5px] bg-[#fecb2e] mt-2 mb-4 rounded-sm"></div>
+</section>
+<!-- BEGIN: LoginForm -->
+<form class="w-full flex flex-col space-y-3" data-purpose="login-form" onsubmit="event.preventDefault();">
+<!-- Username Input -->
+<div class="relative flex items-center w-full h-[50px] bg-[#141d27] pixel-border-input px-4 transition border border-[#202f41] focus-within:border-[#fecb2e]">
+<!-- User Yellow Pixel Icon -->
+<div class="w-6 h-6 flex items-center justify-center text-[#fecb2e] mr-3">
+<svg class="w-5 h-5 fill-current pixelated" viewBox="0 0 24 24">
+<path d="M12 2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5 5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m0 13c5.5 0 10 3 10 6v1H2v-1c0-3 4.5-6 10-6z"></path>
+</svg>
+</div>
+<input class="w-full bg-transparent border-0 p-0 text-[#90a2b6] placeholder-[#576b81] focus:ring-0 focus:outline-none text-base font-medium" id="usuario" placeholder="Usuario" type="text" value="Usuario">
+</div>
+<!-- Password Input -->
+<div class="relative flex items-center w-full h-[50px] bg-[#141d27] pixel-border-input px-4 transition border border-[#202f41] focus-within:border-[#fecb2e]">
+<!-- Lock Yellow Pixel Icon -->
+<div class="w-6 h-6 flex items-center justify-center text-[#fecb2e] mr-3">
+<svg class="w-5 h-5 fill-current pixelated" viewBox="0 0 24 24">
+<path d="M18 10h-1V7A5 5 0 0 0 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2zm-6 7a2 2 0 1 1 2-2 2 2 0 0 1-2 2zm3.1-7H8.9V7a3.1 3.1 0 0 1 6.2 0z"></path>
+</svg>
+</div>
+<input class="w-full bg-transparent border-0 p-0 text-[#90a2b6] placeholder-[#576b81] focus:ring-0 focus:outline-none text-base tracking-widest font-medium" id="password" placeholder="Contraseña" type="password" value="••••••••••••">
+<!-- Eye toggle icon -->
+<button class="text-[#5b6e82] hover:text-[#90a2b6] focus:outline-none ml-2" type="button">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+<path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path>
+<path d="M2 2l20 20-1.41 1.41L2.59 3.41z" opacity="0.7"></path>
+</svg>
+</button>
+</div>
+<!-- Forgot Password Link -->
+<div class="w-full flex justify-end pt-1">
+<a class="font-silkscreen text-[11px] text-[#fecb2e] hover:underline cursor-pointer" href="#">
+            ¿Olvidaste tu contraseña?
+          </a>
+</div>
+<!-- Submit Button -->
+<button class="pixel-button-gold w-full h-[52px] mt-2 flex items-center justify-center space-x-2 text-[#1c1200] font-pixel text-xs tracking-wider uppercase cursor-pointer" type="submit">
+<span class="">OPEN VAULT</span>
+<span class="font-bold text-base leading-none translate-y-[-1px]">&gt;</span>
+</button>
+</form>
+<!-- END: LoginForm -->
+<!-- Middle Decorative Slogan -->
+<div class="flex items-center justify-center my-3 space-x-2">
+<div class="w-7 h-[1.5px] bg-[#fecb2e]"></div>
+<p class="font-pixel text-[7.5px] tracking-wider text-[#7991a9] text-center uppercase leading-relaxed">
+          PEQUEÑAS DECISIONES<br>GRANDES LOGROS
+        </p>
+<div class="w-7 h-[1.5px] bg-[#fecb2e]"></div>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: BottomPixelArtDecor -->
+<footer class="relative z-10 w-full mt-auto" data-purpose="footer-skyline-and-coins">
+<!-- Night City Skyline Silhouette Backdrop (Pixel Art Blocks) -->
+<div class="absolute bottom-10 left-0 right-0 h-28 pointer-events-none opacity-30 flex items-end justify-center space-x-1 px-4 overflow-hidden">
+<div class="w-5 h-16 bg-[#213548]"></div>
+<div class="w-7 h-20 bg-[#172737] flex flex-col justify-around py-1 items-center">
+<div class="w-1.5 h-1.5 bg-[#fecb2e] opacity-40"></div>
+<div class="w-1.5 h-1.5 bg-[#fecb2e] opacity-40"></div>
+</div>
+<div class="w-4 h-12 bg-[#121f2d]"></div>
+<div class="w-6 h-24 bg-[#1b2d3e]"></div>
+<div class="w-8 h-18 bg-[#142332]"></div>
+<div class="w-5 h-28 bg-[#1e3246]"></div>
+<div class="w-7 h-14 bg-[#152332]"></div>
+<div class="w-9 h-22 bg-[#18293a]"></div>
+</div>
+<!-- Coin Piles & Stone Pedestals Left and Right -->
+<div class="relative w-full h-28 flex items-end justify-between px-[-5px] pointer-events-none">
+<!-- Left Coins & Blocks (Mirrored Image 7) -->
+<div class="w-36 h-28 relative -scale-x-100 -ml-4 -mb-1 opacity-95">
+<img alt="Left Stone &amp; Gold Coins" class="pixelated w-full h-full object-contain object-bottom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzgJMz_AApWuSoZWEyCsDA-896Tqa68T2dsX8Iqfu7ksA5vY-bmt7p9ikBieC-Wi0TRozKC8fiUqUoW29MPwkPnZb6Vd3SBLGnByrTW0j4x73fSAwiLxZBLK5U1agvG_uJ_lnA421S01RHnn-i606Pb5zg6TXU-s5CmOSk4EPVWNokl2KAp7kxjz8G1pkjPYew89z_IMariXet_0OKVA4CatOUgC7MWSW5eOQZjPQks5JjTOR6LJMBp9HAVYNlrm9B">
+</div>
+<!-- Center Studio Branding -->
+<div class="relative z-20 flex flex-col items-center justify-end pb-3 text-center pointer-events-auto">
+<!-- Pixel Game Controller -->
+<svg class="w-6 h-6 text-[#fecb2e] mb-1 pixelated" fill="currentColor" viewBox="0 0 24 24">
+<path d="M7 4h10v2H7zM5 6h14v2H5zM3 8h18v6h-2v4h-3v-2h-1v-2H9v2H8v2H5v-4H3zm4 4h2v2H7zm0-2h2V8H7zm-2 2h2v-2H5zm4 0h2v-2H9zm6 0h2v-2h-2zm2 2h2v-2h-2z"></path>
+</svg>
+<p class="font-silkscreen text-[9px] text-[#788e9f] leading-tight tracking-tight">
+            Diseñado por<br>
+<span class="text-[#9ab1c5]">DoomForge Studios.</span>
+</p>
+</div>
+<!-- Right Coins & Blocks (Image 7) -->
+<div class="w-36 h-28 relative -mr-4 -mb-1 opacity-95">
+<img alt="Right Stone &amp; Gold Coins" class="pixelated w-full h-full object-contain object-bottom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwLZ368ZcFHcQ5SyMixTH87BKexFrGgOcSUwkDBLSgBBLAtm7R6n9oxDXz3occeMN6MNuD2dNRc-QNkOC-Ytr1W-ked3wXWlv3zIRB7Afn9FoTakEhTfVPSrTSw2hVjjhxIQ1460jYY0XAWzmh_1zsvVo0pUN0BYK7pJQXhQ_ekbc3Ol6I4EzfOppFKGBmrTuC46i_D1073_N9L4qI7SRLWRU0YOYzJMh71A5WIxYBZLa8wyZtRSZpiI5FPO7m2qwT">
+</div>
+</div>
+<!-- iPhone Home Indicator Bar -->
+<div class="w-full flex justify-center pb-2 pt-1 bg-[#090e15]">
+<div class="w-32 h-1 bg-white/40 rounded-full"></div>
+</div>
+</footer>
+<!-- END: BottomPixelArtDecor -->
+</div>
+<!-- END: PhoneFrame -->
+<!-- Optional Interactivity Handling -->
+<script data-purpose="toggle-password">
+    // Simple script to toggle password visibility like in native iOS apps
+    document.addEventListener('DOMContentLoaded', () => {
+      const passwordField = document.getElementById('password');
+      const toggleBtn = passwordField?.parentElement.querySelector('button');
+
+      if (toggleBtn && passwordField) {
+        toggleBtn.addEventListener('click', () => {
+          const isPassword = passwordField.getAttribute('type') === 'password';
+          passwordField.setAttribute('type', isPassword ? 'text' : 'password');
+        });
+      }
+    });
+  </script>
+
+
+
+
+</body></html>

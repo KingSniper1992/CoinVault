@@ -1,0 +1,452 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CoinVault - Dashboard</title>
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts for Retro Pixel & Clean UI typography -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&amp;family=Press+Start+2P&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<!-- Custom Styles for Pixel Art UI Styling -->
+<style data-purpose="custom-fonts">
+    .font-pixel-heading {
+      font-family: 'Silkscreen', 'Press Start 2P', monospace;
+    }
+    .font-pixel-body {
+      font-family: 'Chakra Petch', system-ui, sans-serif;
+    }
+  </style>
+<style data-purpose="pixel-borders-and-clouds">
+    /* Pixelated Cloud Background */
+    .pixel-cloud-bg {
+      background-color: #f1f5f9;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(226, 232, 240, 0.8) 0, rgba(226, 232, 240, 0.8) 50px, transparent 52px),
+        radial-gradient(circle at 18% 28%, rgba(226, 232, 240, 0.9) 0, rgba(226, 232, 240, 0.9) 80px, transparent 82px),
+        radial-gradient(circle at 85% 15%, rgba(226, 232, 240, 0.7) 0, rgba(226, 232, 240, 0.7) 70px, transparent 72px),
+        radial-gradient(circle at 92% 25%, rgba(226, 232, 240, 0.8) 0, rgba(226, 232, 240, 0.8) 90px, transparent 92px),
+        radial-gradient(circle at 30% 90%, rgba(226, 232, 240, 0.6) 0, rgba(226, 232, 240, 0.6) 120px, transparent 122px),
+        radial-gradient(circle at 60% 95%, rgba(226, 232, 240, 0.6) 0, rgba(226, 232, 240, 0.6) 140px, transparent 142px);
+    }
+
+    /* Chunky Pixel Styled Borders */
+    .pixel-box-yellow {
+      border: 3px solid #18181b;
+      box-shadow: 0 0 0 2px #facc15, 0 4px 0 0 #ca8a04;
+    }
+    .pixel-box-card {
+      border: 3px solid #18181b;
+      box-shadow: 0 0 0 2px #facc15;
+    }
+    .pixel-table-box {
+      border: 3px solid #18181b;
+      box-shadow: 2px 3px 0px rgba(0, 0, 0, 0.35);
+    }
+  </style>
+</head>
+<body class="bg-slate-100 pixel-cloud-bg min-h-screen text-slate-900 font-pixel-body flex flex-col justify-between select-none relative overflow-x-hidden">
+<!-- BEGIN: MainHeader -->
+<header class="bg-[#15181e] text-white border-b-4 border-[#facc15] px-4 py-2.5 shadow-md relative z-30" data-purpose="navbar">
+<div class="max-w-[1480px] mx-auto flex items-center justify-between">
+<!-- Left side: Brand Logo -->
+<div class="flex items-center space-x-3.5" data-purpose="brand-container">
+<img alt="CoinVault Chest Logo" class="w-10 h-10 object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXFGitj74GkXPmidogV6LX5aEjf0dY8nHn-SqMSk_2-OGKDNn294VRtdoQ8i-aCQ6jvsyT1lmuDEz7rf7hfAp1kBe0w2FDWBZQJsVv4fqu6CnuVbwc5id-9_g2A9Emwp1wJ4dOeoq9yLc_NPNwXFD1y_DHSXR7qM3GpomvaWmzgGnzZCEc1YukJ39IdvWwf7Z3ruStoc1JK4WHQntMl3SiYuUjOyENpzG6NnE6p21weuBV7V1s4k3wtB-za4b5znC2">
+<div class="flex flex-col">
+<div class="flex items-baseline space-x-1.5 leading-none">
+<span class="font-pixel-heading font-black text-lg sm:text-xl tracking-wider text-white">COIN</span>
+<span class="font-pixel-heading font-black text-lg sm:text-xl tracking-wider text-[#facc15]">VAULT</span>
+</div>
+
+</div>
+</div>
+<!-- Center navigation links -->
+<nav class="hidden md:flex items-center space-x-2" data-purpose="navigation-links">
+<!-- Active Dashboard link -->
+<a class="flex items-center space-x-2 bg-[#1b2028] text-[#facc15] border-2 border-[#facc15] px-4 py-1.5 rounded-lg text-sm font-bold tracking-wide shadow-sm" href="#dashboard">
+<!-- Retro Home Icon SVG -->
+<svg class="w-4 h-4 fill-current text-[#facc15]" viewBox="0 0 24 24">
+<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+</svg>
+<span class="">Dashboard</span>
+</a>
+<!-- Ingresos link -->
+<a class="flex items-center space-x-2 text-slate-200 hover:text-white px-3.5 py-1.5 rounded-lg text-sm font-semibold transition-colors" href="#ingresos">
+<!-- Green Up Arrow -->
+<span class="text-emerald-500 font-black text-base">↑</span>
+<span class="">Ingresos</span>
+</a>
+<!-- Egresos link -->
+<a class="flex items-center space-x-2 text-slate-200 hover:text-white px-3.5 py-1.5 rounded-lg text-sm font-semibold transition-colors" href="#egresos">
+<!-- Red Down Arrow -->
+<span class="text-rose-500 font-black text-base">↓</span>
+<span class="">Egresos</span>
+</a>
+</nav>
+<!-- Right user actions -->
+<div class="flex items-center space-x-5" data-purpose="user-menu">
+<!-- User Profile Pill -->
+<div class="flex items-center space-x-2.5 cursor-pointer hover:opacity-90 transition-opacity">
+<div class="w-8 h-8 rounded-full bg-[#facc15] border-2 border-black flex items-center justify-center text-black font-pixel-heading font-bold text-xs shadow-inner">
+            🧔
+          </div>
+<span class="text-sm font-bold text-slate-100 hidden sm:inline">Usuario</span>
+<svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</div>
+<!-- Logout button -->
+<button class="flex items-center space-x-2 border-2 border-[#ca8a04] hover:bg-[#ca8a04]/20 text-[#fef08a] px-3.5 py-1.5 rounded-md text-xs sm:text-sm font-bold transition-all shadow-sm" type="button">
+<svg class="w-4 h-4 text-[#facc15]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="hidden sm:inline">Cerrar sesión</span>
+</button>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="max-w-[1480px] mx-auto w-full px-4 sm:px-6 py-6 flex-1 flex flex-col justify-start relative" data-purpose="dashboard-content">
+<!-- BEGIN: TopMetricsGrid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6" data-purpose="stats-cards-bar">
+<!-- Card 1: NU Key -->
+<div class="bg-white rounded-xl p-4 pixel-box-card flex items-center justify-between relative shadow-sm" data-purpose="stat-nu-key">
+<div class="flex items-center space-x-3.5">
+<div class="w-14 h-14 bg-[#820ad1] rounded-2xl border-2 border-black flex items-center justify-center shadow-md flex-shrink-0">
+<span class="text-white font-bold text-2xl lowercase tracking-tighter">nu</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-gray-900 leading-tight">Mi llave de NU</h3>
+<p class="text-gray-700 tracking-widest text-xs sm:text-sm font-mono mt-1 font-bold">**** **** ****</p>
+</div>
+</div>
+<button class="p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg border border-gray-300" title="Copiar llave">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Card 2: Total Investment Money -->
+<div class="bg-white rounded-xl p-4 pixel-box-card flex items-center space-x-3.5 shadow-sm" data-purpose="stat-total-money">
+<div class="w-14 h-14 bg-[#fef9c3] rounded-2xl border-2 border-black flex items-center justify-center text-2xl flex-shrink-0 shadow-md">
+          💰
+        </div>
+<div class="overflow-hidden">
+<h3 class="text-xs sm:text-sm font-bold text-gray-800 leading-tight truncate">Dinero total de inversión</h3>
+<p class="text-xl sm:text-2xl font-black text-gray-900 mt-0.5 tracking-tight font-pixel-heading">
+            $ 1.310.000
+          </p>
+</div>
+</div>
+<!-- Card 3: Notes and Reminders -->
+<div class="bg-white rounded-xl p-4 pixel-box-card flex items-center justify-between shadow-sm cursor-pointer hover:bg-amber-50/20 transition-colors" data-purpose="stat-reminders">
+<div class="flex items-center space-x-3.5">
+<div class="w-14 h-14 bg-amber-50 rounded-2xl border-2 border-black flex items-center justify-center text-2xl flex-shrink-0 shadow-md">
+            📋
+          </div>
+<div>
+<h3 class="text-xs sm:text-sm font-bold text-gray-800 leading-tight">Recordatorios o apuntes</h3>
+<p class="text-2xl font-black text-gray-900 font-pixel-heading mt-0.5">3</p>
+</div>
+</div>
+<span class="text-amber-500 font-black text-2xl pr-1">›</span>
+</div>
+<!-- Card 4: Image Access -->
+<div class="bg-white rounded-xl p-4 pixel-box-card flex items-center justify-between shadow-sm cursor-pointer hover:bg-amber-50/20 transition-colors" data-purpose="stat-images">
+<div class="flex items-center space-x-3.5">
+<div class="w-14 h-14 bg-sky-500 rounded-2xl border-2 border-black flex items-center justify-center text-2xl flex-shrink-0 shadow-md">
+            🌌
+          </div>
+<div>
+<h3 class="text-xs sm:text-sm font-bold text-gray-900 leading-tight">Acceso a imágenes</h3>
+</div>
+</div>
+<span class="text-amber-500 font-black text-2xl pr-1">›</span>
+</div>
+</section>
+<!-- END: TopMetricsGrid -->
+<!-- BEGIN: QuincenaBudgetGrid -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 relative" data-purpose="quincenas-grid">
+<!-- ================= Quincena 1 (Blue) ================= -->
+<div class="pixel-table-box bg-white rounded-xl overflow-hidden flex flex-col" data-purpose="quincena-column-1">
+<!-- Header -->
+<div class="bg-[#93c5fd] p-3 border-b-2 border-black flex items-center space-x-3">
+<div class="w-9 h-9 bg-white border-2 border-black rounded-lg flex items-center justify-center text-lg shadow-sm">
+            🗓️
+          </div>
+<div>
+<h2 class="font-bold text-base text-gray-900 leading-none">Quincena 1</h2>
+<p class="text-xs text-gray-700 font-semibold mt-1">1 - 15 Enero</p>
+</div>
+</div>
+<!-- Table Column Headers -->
+<div class="grid grid-cols-12 bg-[#dbeafe] border-b-2 border-black text-xs font-bold text-gray-800 py-1.5 px-2">
+<span class="col-span-2 text-center">#</span>
+<span class="col-span-6">Concepto</span>
+<span class="col-span-4 text-right">Monto</span>
+</div>
+<!-- Table Rows -->
+<div class="divide-y divide-gray-200 text-xs sm:text-sm font-medium flex-1">
+<!-- Row 1 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white hover:bg-slate-50">
+<span class="col-span-2 text-center text-gray-500 font-bold">1</span>
+<span class="col-span-6 font-semibold text-gray-900">Casa</span>
+<span class="col-span-4 text-right font-mono font-bold text-gray-800">100.000</span>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white hover:bg-slate-50">
+<span class="col-span-2 text-center text-gray-500 font-bold">2</span>
+<span class="col-span-6 font-semibold text-gray-900">Cadena</span>
+<span class="col-span-4 text-right font-mono font-bold text-gray-800">150.000</span>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white hover:bg-slate-50">
+<span class="col-span-2 text-center text-gray-500 font-bold">3</span>
+<span class="col-span-6 font-semibold text-gray-900">Movistar</span>
+<span class="col-span-4 text-right font-mono font-bold text-gray-800">50.000</span>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">4</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">5</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 6 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">6</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+</div>
+<!-- Total Footer -->
+<div class="bg-[#dcfce7] border-t-2 border-black p-2 px-3 flex justify-between items-center text-sm font-bold text-gray-900">
+<span class="">Total</span>
+<span class="font-mono font-black text-base">300.000</span>
+</div>
+</div>
+<!-- ================= Quincena 2 (Green) ================= -->
+<div class="pixel-table-box bg-white rounded-xl overflow-hidden flex flex-col" data-purpose="quincena-column-2">
+<!-- Header -->
+<div class="bg-[#86efac] p-3 border-b-2 border-black flex items-center space-x-3">
+<div class="w-9 h-9 bg-white border-2 border-black rounded-lg flex items-center justify-center text-lg shadow-sm">
+            🗓️
+          </div>
+<div>
+<h2 class="font-bold text-base text-gray-900 leading-none">Quincena 2</h2>
+<p class="text-xs text-gray-700 font-semibold mt-1">16 - 31 Enero</p>
+</div>
+</div>
+<!-- Table Column Headers -->
+<div class="grid grid-cols-12 bg-[#bbf7d0] border-b-2 border-black text-xs font-bold text-gray-800 py-1.5 px-2">
+<span class="col-span-2 text-center">#</span>
+<span class="col-span-6">Concepto</span>
+<span class="col-span-4 text-right">Monto</span>
+</div>
+<!-- Table Rows -->
+<div class="divide-y divide-gray-200 text-xs sm:text-sm font-medium flex-1">
+<!-- Row 1 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white hover:bg-slate-50">
+<span class="col-span-2 text-center text-gray-500 font-bold">1</span>
+<span class="col-span-6 font-semibold text-gray-900">Tarjeta RAPPI</span>
+<span class="col-span-4 text-right font-mono font-bold text-gray-800">800.000</span>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white hover:bg-slate-50">
+<span class="col-span-2 text-center text-gray-500 font-bold">2</span>
+<span class="col-span-6 font-semibold text-gray-900">Tarjeta NU</span>
+<span class="col-span-4 text-right font-mono font-bold text-gray-800">160.000</span>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white hover:bg-slate-50">
+<span class="col-span-2 text-center text-gray-500 font-bold">3</span>
+<span class="col-span-6 font-semibold text-gray-900">Bananza</span>
+<span class="col-span-4 text-right font-mono font-bold text-gray-800">50.000</span>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">4</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">5</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 6 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">6</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+</div>
+<!-- Total Footer -->
+<div class="bg-[#dcfce7] border-t-2 border-black p-2 px-3 flex justify-between items-center text-sm font-bold text-gray-900">
+<span class="">Total</span>
+<span class="font-mono font-black text-base">1.010.000</span>
+</div>
+</div>
+<!-- ================= Quincena 3 (Red/Coral) ================= -->
+<div class="pixel-table-box bg-white rounded-xl overflow-hidden flex flex-col" data-purpose="quincena-column-3">
+<!-- Header -->
+<div class="bg-[#fca5a5] p-3 border-b-2 border-black flex items-center space-x-3">
+<div class="w-9 h-9 bg-white border-2 border-black rounded-lg flex items-center justify-center text-lg shadow-sm">
+            🗓️
+          </div>
+<div>
+<h2 class="font-bold text-base text-gray-900 leading-none">Quincena 3</h2>
+<p class="text-xs text-gray-700 font-semibold mt-1">1 - 15 Febrero</p>
+</div>
+</div>
+<!-- Table Column Headers -->
+<div class="grid grid-cols-12 bg-[#fecaca] border-b-2 border-black text-xs font-bold text-gray-800 py-1.5 px-2">
+<span class="col-span-2 text-center">#</span>
+<span class="col-span-6">Concepto</span>
+<span class="col-span-4 text-right">Monto</span>
+</div>
+<!-- Table Rows -->
+<div class="divide-y divide-gray-200 text-xs sm:text-sm font-medium flex-1">
+<!-- Row 1 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">1</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">2</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">3</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">4</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">5</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 6 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">6</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+</div>
+<!-- Total Footer -->
+<div class="bg-[#dcfce7] border-t-2 border-black p-2 px-3 flex justify-between items-center text-sm font-bold text-gray-900">
+<span class="">Total</span>
+<span class="font-mono font-black text-base">0</span>
+</div>
+</div>
+<!-- ================= Quincena 4 (Purple) ================= -->
+<div class="pixel-table-box bg-white rounded-xl overflow-hidden flex flex-col" data-purpose="quincena-column-4">
+<!-- Header -->
+<div class="bg-[#c4b5fd] p-3 border-b-2 border-black flex items-center space-x-3">
+<div class="w-9 h-9 bg-white border-2 border-black rounded-lg flex items-center justify-center text-lg shadow-sm">
+            🗓️
+          </div>
+<div>
+<h2 class="font-bold text-base text-gray-900 leading-none">Quincena 4</h2>
+<p class="text-xs text-gray-700 font-semibold mt-1">16 - 28 Febrero</p>
+</div>
+</div>
+<!-- Table Column Headers -->
+<div class="grid grid-cols-12 bg-[#ddd6fe] border-b-2 border-black text-xs font-bold text-gray-800 py-1.5 px-2">
+<span class="col-span-2 text-center">#</span>
+<span class="col-span-6">Concepto</span>
+<span class="col-span-4 text-right">Monto</span>
+</div>
+<!-- Table Rows -->
+<div class="divide-y divide-gray-200 text-xs sm:text-sm font-medium flex-1">
+<!-- Row 1 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">1</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">2</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">3</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">4</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">5</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+<!-- Row 6 -->
+<div class="grid grid-cols-12 px-2 py-2 items-center bg-white">
+<span class="col-span-2 text-center text-gray-500 font-bold">6</span>
+<span class="col-span-6 text-gray-400 font-bold">-</span>
+<span class="col-span-4 text-right text-gray-400 font-bold">-</span>
+</div>
+</div>
+<!-- Total Footer -->
+<div class="bg-[#dcfce7] border-t-2 border-black p-2 px-3 flex justify-between items-center text-sm font-bold text-gray-900">
+<span class="">Total</span>
+<span class="font-mono font-black text-base">0</span>
+</div>
+</div>
+</section>
+<!-- END: QuincenaBudgetGrid -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: MainFooter -->
+<footer class="relative w-full py-8 mt-4 overflow-hidden" data-purpose="site-footer">
+<!-- Footer Brand Text -->
+<div class="flex flex-col items-center justify-center text-center relative z-10 px-4">
+<!-- Logo Divider Line Header -->
+<div class="flex items-center space-x-3 mb-1">
+<span class="h-[2px] w-12 bg-slate-300 hidden sm:block"></span>
+<div class="flex items-baseline space-x-1">
+<span class="font-pixel-heading font-black text-base text-gray-900">COIN</span>
+<span class="font-pixel-heading font-black text-base text-[#f59e0b]">VAULT</span>
+</div>
+<span class="h-[2px] w-12 bg-slate-300 hidden sm:block"></span>
+</div>
+<p class="text-xs font-semibold text-gray-500 tracking-wide">
+        Design by Doom Forge Studios
+      </p>
+</div>
+<!-- Bottom Right Pixel Art Stone Stairs with Gold Coins -->
+<div class="absolute bottom-0 right-0 pointer-events-none z-30" data-purpose="decorative-stairs"><img alt="Stone steps with pixel gold coins" class="w-48 sm:w-64 md:w-80 h-auto object-contain block select-none drop-shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeSGg2ZnwAY-yVtxrBKfsh6lpY31EtkZUnqymnWMkUFpxRaF9RkhSZoGDM5e9QMTuAj17VzK1KOxZVb8uuFsnetAy5FfPelSy0FtHh83wJq52iO-yvbw1XOXHKOQb0tD0hQZeCcsm1kasYNwqB3Z0JckOSzw8Obafv81d_m_i0VWa4r-YULW7MB0m6etQzdDsmPUWWLzysK_fCiWhhUTP-n6jZ9wHVwidS3iwGsxCuWZBpqPlyEU33RDrJbrlq0z2Y"></div>
+</footer>
+<!-- END: MainFooter -->
+
+
+
+
+</body></html>

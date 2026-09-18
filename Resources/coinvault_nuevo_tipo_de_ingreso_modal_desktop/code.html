@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CoinVault - Nuevo tipo de ingreso</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: VT323 & Press Start 2P & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=VT323&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- FontAwesome for UI icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            vaultGold: '#F8B800',
+            vaultGoldDark: '#C98A00',
+            vaultDark: '#121418',
+            vaultHeader: '#0c0e12',
+            vaultBorder: '#1c1f26',
+            skyLight: '#dde7f3',
+          },
+          fontFamily: {
+            pixel: ['"Press Start 2P"', 'monospace'],
+            vt: ['"VT323"', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Pixel & Layout Styles -->
+<style data-purpose="pixel-borders">
+    /* Pixelated borders and crisp rendering */
+    .pixel-art {
+      image-rendering: pixelated;
+    }
+    
+    /* Retro modal box border */
+    .modal-card {
+      border: 3px solid #F5A623;
+      border-radius: 12px;
+      box-shadow: 0 4px 0 #18191c;
+    }
+
+    /* Retro style action buttons */
+    .btn-pixel-cancel {
+      box-shadow: 0 3px 0 #20232a;
+      border: 2px solid #20232a;
+      transition: transform 0.05s ease, box-shadow 0.05s ease;
+    }
+    .btn-pixel-cancel:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #20232a;
+    }
+
+    .btn-pixel-save {
+      background: linear-gradient(180deg, #FECD2F 0%, #F5A623 100%);
+      box-shadow: 0 3px 0 #1a1b1e;
+      border: 2px solid #1a1b1e;
+      transition: transform 0.05s ease, box-shadow 0.05s ease;
+    }
+    .btn-pixel-save:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #1a1b1e;
+    }
+
+    /* Pixel background clouds styling */
+    .sky-bg {
+      background-color: #dbe5f0;
+      background-image: 
+        radial-gradient(ellipse at 50% 100%, #ffffff 0%, #e2ecf7 50%, #ccdbeb 100%);
+    }
+
+    /* Pixelated cloud shadows simulation */
+    .pixel-cloud {
+      position: absolute;
+      background-color: #ffffff;
+      opacity: 0.65;
+      box-shadow: -8px 0 0 0 #ffffff, 8px 0 0 0 #ffffff, 0 -8px 0 0 #ffffff;
+    }
+  </style>
+<!-- END: Custom Pixel & Layout Styles -->
+</head>
+<body class="min-h-screen sky-bg text-slate-800 flex flex-col font-sans select-none overflow-x-hidden relative">
+<!-- BEGIN: MainHeader -->
+<header class="w-full bg-[#0d0f12] border-b-[3px] border-[#F5A623] text-white px-4 md:px-8 py-2 z-20" data-purpose="navbar">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<!-- Left side: Brand Logo & Navigation Links -->
+<div class="flex items-center space-x-6">
+<!-- Logo Image + Title -->
+<a class="flex items-center space-x-3 group" href="#">
+<img alt="Coin Vault" class="w-10 h-10 pixel-art object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7KJ6sDkjjUPhEEoAm9O_Oc8-ZhY-GkbuYQtxaYxJ4UPRhZUecfroMWCBLxt1vE59YY17uSuw__Zj32ywqXOpNEouwseBBwRoTIMBl-OnV9Zllnl2wqyFPYvcCFZYSKuRurEHTRTohJGG4u9oT05nMsaAwpjE7iWDRFv0EoZb3W0WqDSa-CLjXWaQoAgXm_q1D8c078EGI3wZ1SMu7FWF-8soPIWX2w44YMDh7Sy4Bye-v5Sz5Gw7xnThv9fafq7TV">
+<div class="flex flex-col">
+<span class="font-pixel text-base tracking-wider text-white">COIN <span class="text-[#F5A623]">VAULT</span></span>
+
+</div>
+</a>
+<!-- Main Navigation Items -->
+<nav class="hidden md:flex items-center space-x-3 text-sm font-semibold ml-4">
+<!-- Dashboard Link -->
+<a class="flex items-center space-x-2 text-slate-300 hover:text-white px-3 py-2 transition-colors" href="#">
+<i class="fa-solid fa-house text-[#F5A623] text-base"></i>
+<span class="">Dashboard</span>
+</a>
+<!-- Ingresos (Active State with outline border) -->
+<a class="flex items-center space-x-2 px-3.5 py-1.5 rounded-lg border-2 border-[#F5A623] text-[#F5A623] bg-black/40 font-bold shadow-inner" href="#">
+<span class="bg-[#2ecc71] text-black w-4 h-4 rounded-sm flex items-center justify-center text-[10px]">
+<i class="fa-solid fa-arrow-up text-black font-extrabold"></i>
+</span>
+<span class="">Ingresos</span>
+</a>
+<!-- Egresos Link -->
+<a class="flex items-center space-x-2 text-slate-300 hover:text-white px-3 py-2 transition-colors" href="#">
+<i class="fa-solid fa-arrow-down text-[#e74c3c] text-sm"></i>
+<span class="">Egresos</span>
+</a>
+</nav>
+</div>
+<!-- Right side: User Profile & Logout -->
+<div class="flex items-center space-x-4">
+<!-- Vertical separator -->
+<div class="h-6 w-[1px] bg-slate-700 hidden sm:block"></div>
+<!-- User Dropdown Menu -->
+<div class="flex items-center space-x-2 cursor-pointer hover:opacity-90">
+<div class="w-7 h-7 rounded-full bg-[#f1c40f] p-0.5 border border-[#2d323b] flex items-center justify-center overflow-hidden">
+<span class="text-xs">🧔</span>
+</div>
+<span class="text-xs sm:text-sm font-semibold text-slate-200">Usuario</span>
+<i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+</div>
+<!-- Logout Button -->
+<button class="flex items-center space-x-2 border border-slate-700 hover:border-slate-500 rounded-md px-3 py-1.5 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition-all bg-[#16191f]">
+<i class="fa-solid fa-arrow-right-from-bracket text-[#e67e22] text-xs"></i>
+<span class="">Cerrar sesión</span>
+</button>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: Ambient Background Details -->
+<!-- Subtle pixel-art clouds in background -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden z-0" data-purpose="pixel-clouds-layer">
+<!-- Cloud 1 -->
+<div class="absolute top-24 left-10 w-28 h-6 bg-white/40 rounded-full blur-[1px]"></div>
+<div class="absolute top-20 left-16 w-16 h-8 bg-white/40 rounded-full blur-[1px]"></div>
+<!-- Cloud 2 -->
+<div class="absolute top-40 left-6 w-36 h-7 bg-white/50 rounded-full blur-[1px]"></div>
+<!-- Cloud 3 (Right) -->
+<div class="absolute top-28 right-16 w-44 h-10 bg-white/50 rounded-full blur-[1px]"></div>
+<div class="absolute top-22 right-24 w-24 h-12 bg-white/50 rounded-full blur-[1px]"></div>
+</div>
+<!-- END: Ambient Background Details -->
+<!-- BEGIN: MainContentArea -->
+<main class="flex-grow flex items-center justify-center p-4 sm:p-6 relative z-10" data-purpose="modal-container">
+<!-- BEGIN: ModalCard -->
+<section class="modal-card bg-white w-full max-w-[560px] p-6 sm:p-8 relative shadow-xl" data-purpose="create-income-card">
+<!-- Modal Header: Icon & Titles -->
+<div class="flex items-start space-x-4 mb-6" data-purpose="card-header">
+<!-- Pixel Gold Coin Stack Icon -->
+<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center">
+<svg class="w-11 h-11 drop-shadow-sm" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+<!-- Stack of retro pixel coins -->
+<path d="M6 14h10v2H6zm0 2h12v2H6zm0 2h12v2H6zm0 2h10v2H6z" fill="#000000" fill-opacity="0.2"></path>
+<!-- Coin Base 1 -->
+<rect fill="#F39C12" height="6" rx="2" stroke="#1c1917" stroke-width="1.5" width="14" x="8" y="8"></rect>
+<rect fill="#F1C40F" height="3" width="10" x="10" y="9"></rect>
+<!-- Coin Base 2 -->
+<rect fill="#F39C12" height="6" rx="2" stroke="#1c1917" stroke-width="1.5" width="14" x="6" y="13"></rect>
+<rect fill="#F1C40F" height="3" width="10" x="8" y="14"></rect>
+<!-- Coin Base 3 -->
+<rect fill="#D68910" height="6" rx="2" stroke="#1c1917" stroke-width="1.5" width="14" x="5" y="18"></rect>
+<rect fill="#F39C12" height="3" width="10" x="7" y="19"></rect>
+<!-- Front Coin Stack High -->
+<rect fill="#F39C12" height="6" rx="2" stroke="#1c1917" stroke-width="1.5" width="14" x="11" y="16"></rect>
+<rect fill="#FCD535" height="3" width="10" x="13" y="17"></rect>
+</svg>
+</div>
+<!-- Title & Subtitle -->
+<div>
+<h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-snug">
+            Nuevo tipo de ingreso
+          </h1>
+<p class="text-xs sm:text-sm font-medium text-slate-500 mt-0.5">
+            Registra un nuevo concepto de ingreso
+          </p>
+</div>
+</div>
+<!-- BEGIN: Form -->
+<form action="#" class="space-y-4" data-purpose="income-type-form" method="POST">
+<!-- Field 1: Nombre del ingreso -->
+<div>
+<label class="block text-xs font-bold text-slate-800 mb-1.5" for="income-name">
+            Nombre del ingreso
+          </label>
+<div class="relative rounded-md">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<i class="fa-solid fa-tag text-xs"></i>
+</div>
+<input class="block w-full pl-9 pr-3 py-2.5 text-xs sm:text-sm bg-slate-50/70 border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-colors" id="income-name" name="income-name" placeholder="Ej. Salario, Freelance, Bonificación, etc." type="text">
+</div>
+</div>
+<!-- Field 2: Descripción (opcional) -->
+<div>
+<label class="block text-xs font-bold text-slate-800 mb-1.5" for="income-desc">
+            Descripción (opcional)
+          </label>
+<div class="relative rounded-md">
+<div class="absolute top-3 left-3 pointer-events-none text-slate-400">
+<i class="fa-regular fa-message text-xs"></i>
+</div>
+<textarea class="block w-full pl-9 pr-3 py-2.5 text-xs sm:text-sm bg-slate-50/70 border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-colors resize-y" id="income-desc" name="income-desc" placeholder="Agrega una breve descripción..." rows="3"></textarea>
+</div>
+</div>
+<!-- Field 3: Color Palette Picker -->
+<div>
+<label class="block text-xs font-bold text-slate-800 mb-2">
+            Color
+          </label>
+<div class="flex items-center space-x-2.5" data-purpose="color-picker-group">
+<!-- Yellow (Selected by default) -->
+<button aria-label="Color Amarillo Seleccionado" class="w-7 h-7 rounded-md bg-[#f1c40f] border-2 border-slate-900 shadow-sm focus:outline-none" type="button"></button>
+<!-- Blue -->
+<button aria-label="Color Azul" class="w-7 h-7 rounded-md bg-[#3498db] border border-transparent hover:opacity-90 focus:outline-none" type="button"></button>
+<!-- Green -->
+<button aria-label="Color Verde" class="w-7 h-7 rounded-md bg-[#2ecc71] border border-transparent hover:opacity-90 focus:outline-none" type="button"></button>
+<!-- Pink/Red -->
+<button aria-label="Color Rojo" class="w-7 h-7 rounded-md bg-[#e74c3c] border border-transparent hover:opacity-90 focus:outline-none" type="button"></button>
+<!-- Purple -->
+<button aria-label="Color Púrpura" class="w-7 h-7 rounded-md bg-[#a55eea] border border-transparent hover:opacity-90 focus:outline-none" type="button"></button>
+<!-- Slate Grey -->
+<button aria-label="Color Gris" class="w-7 h-7 rounded-md bg-[#778ca3] border border-transparent hover:opacity-90 focus:outline-none" type="button"></button>
+</div>
+</div>
+<!-- Field 4: Estado Dropdown -->
+<div>
+<label class="block text-xs font-bold text-slate-800 mb-1.5" for="status-select">
+            Estado
+          </label>
+<div class="relative rounded-md">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+<i class="fa-solid fa-coins text-xs"></i>
+</div>
+<select class="block w-full pl-9 pr-10 py-2.5 text-xs sm:text-sm bg-slate-50/70 border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 appearance-none font-medium cursor-pointer" id="status-select" name="status">
+<option selected="" value="activo">Activo</option>
+<option value="inactivo">Inactivo</option>
+</select>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-500">
+<i class="fa-solid fa-chevron-down text-xs"></i>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center justify-between pt-4 space-x-4" data-purpose="form-actions">
+<!-- Cancel Button -->
+<button class="btn-pixel-cancel w-1/2 py-2.5 px-4 rounded-lg bg-[#e2e8f0] text-slate-800 font-bold text-xs sm:text-sm hover:bg-slate-200 text-center tracking-wide" type="button">
+            Cancelar
+          </button>
+<!-- Submit / Save Button -->
+<button class="btn-pixel-save w-1/2 py-2.5 px-4 rounded-lg text-slate-900 font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 tracking-wide" type="submit">
+<i class="fa-solid fa-floppy-disk text-sm"></i>
+<span class="">Guardar ingreso</span>
+</button>
+</div>
+</form>
+<!-- END: Form -->
+</section>
+<!-- END: ModalCard -->
+</main>
+<!-- END: MainContentArea -->
+<!-- BEGIN: BottomRightCornerCoinGraphic -->
+<!-- Stone steps with gold coins illustration from image 7 -->
+<div class="absolute bottom-0 right-0 pointer-events-none z-10 w-48 sm:w-64 md:w-80 select-none">
+<img alt="Pixel coin steps" class="pixel-art w-full h-auto object-contain block drop-shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB67Q7pMK9ovNHVonRGEx0dPp-j_P4tLPuRL609gFlm0EA5NguoULXLsrrK4WxjrCmyGlSbSjIDxLJ-f9Y7UI1kfIPQvXqnJVjIBCXf8gSj868a5wIzKtQs9Gx-M_ZasNXHPEMlGiNtDjBIO8OckVrnxTNBBoMYAt7lJX_imrL1XgCin0yTAS7hD88Nt7EFNGLfTIOLa2fRnsU_7GsdDKWwssCpIBWHhO17nH-lM1dPIertVZu7azFHJuAVisf5IdFm">
+</div>
+<!-- END: BottomRightCornerCoinGraphic -->
+<!-- BEGIN: PageFooter -->
+<footer class="w-full pb-6 pt-2 text-center text-xs relative z-10" data-purpose="footer">
+<div class="flex items-center justify-center space-x-3 mb-1">
+<div class="h-[1px] w-12 sm:w-20 bg-slate-400/60"></div>
+<div class="font-pixel text-[13px] tracking-wider text-slate-800 font-black">
+        COIN <span class="text-[#F5A623]">VAULT</span>
+</div>
+<div class="h-[1px] w-12 sm:w-20 bg-slate-400/60"></div>
+</div>
+<p class="text-[11px] text-slate-600 font-medium tracking-wide">
+      Design by Doom Forge Studios
+    </p>
+</footer>
+<!-- END: PageFooter -->
+
+
+</body></html>
