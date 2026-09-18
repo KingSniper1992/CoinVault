@@ -72,4 +72,33 @@
     border: 3px solid #18181b;
     box-shadow: 2px 3px 0px rgba(0, 0, 0, 0.35);
   }
+
+  .modal-card {
+    border: 3px solid #F5A623;
+    border-radius: 12px;
+    box-shadow: 0 4px 0 #18191c;
+  }
+
+  .btn-pixel-cancel {
+    box-shadow: 0 3px 0 #20232a;
+    border: 2px solid #20232a;
+    transition: transform 0.05s ease, box-shadow 0.05s ease;
+  }
+  
+  .btn-pixel-cancel:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #20232a;
+  }
+
+  .btn-pixel-save {
+    background: linear-gradient(180deg, #FECD2F 0%, #F5A623 100%);
+    box-shadow: 0 3px 0 #1a1b1e;
+    border: 2px solid #1a1b1e;
+    transition: transform 0.05s ease, box-shadow 0.05s ease;
+  }
+  
+  .btn-pixel-save:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #1a1b1e;
+  }
 }
