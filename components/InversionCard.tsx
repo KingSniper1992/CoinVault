@@ -130,7 +130,7 @@ export function InversionCard() {
         </div>
         <div className="overflow-hidden flex-1">
           <h3 className="text-xs sm:text-sm font-bold text-gray-800 leading-tight truncate">Dinero total de inversión</h3>
-          <p className="text-xl sm:text-2xl font-black text-gray-900 mt-0.5 tracking-tight font-pixel-heading truncate">
+          <p className="text-xl sm:text-2xl font-black text-gray-900 mt-0.5 tracking-tight truncate">
             {isFetching ? "..." : formatCurrency(monto)}
           </p>
         </div>
