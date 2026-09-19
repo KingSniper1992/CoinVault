@@ -149,7 +149,7 @@ export function LlavesCard() {
                 <div key={llave.id} className="flex items-center justify-between bg-gray-50 border border-gray-200 rounded-lg p-2.5 group hover:border-[#facc15] transition-colors">
                   <div className="flex flex-col overflow-hidden">
                     <span className="text-xs font-bold text-gray-500 uppercase">{llave.banco}</span>
-                    <span className="text-base font-pixel-heading font-black text-gray-900 truncate tracking-wide">{llave.llave}</span>
+                    <span className="text-base font-black text-gray-900 truncate tracking-wide">{llave.llave}</span>
                   </div>
                   <div className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button 
