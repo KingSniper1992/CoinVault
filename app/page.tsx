@@ -5,6 +5,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
+const PixelStar = ({ className }: { className?: string }) => (
+  <svg className={className} width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 0h3v4h4v3H9v4H6V7H2V4h4V0z" fill="#facc15" />
+    <rect x="6" y="4" width="3" height="3" fill="#fef9c3" />
+  </svg>
+);
+
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
@@ -67,13 +74,38 @@ export default function LoginPage() {
         {/* Center Logo & Branding Block */}
         <div className="w-full flex flex-col items-center justify-center my-auto py-6 z-10">
           <div className="relative group cursor-pointer flex-1 flex flex-col justify-center py-4">
-            <div className="w-80 sm:w-96 md:w-[32rem] h-auto flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+            <div className="w-80 sm:w-96 md:w-[32rem] h-auto flex items-center justify-center transition-transform duration-300 group-hover:scale-105 relative">
+              
+              {/* Sparkles (visible only on hover) */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 z-10">
+                <PixelStar className="absolute top-[10%] left-[20%] animate-sparkle-1 scale-75" />
+                <PixelStar className="absolute top-[30%] right-[15%] animate-sparkle-2 scale-100" />
+                <PixelStar className="absolute top-[45%] left-[10%] animate-sparkle-3 scale-110" />
+                <PixelStar className="absolute bottom-[25%] right-[20%] animate-sparkle-4 scale-75" />
+                <PixelStar className="absolute bottom-[15%] left-[25%] animate-sparkle-5 scale-100" />
+                <PixelStar className="absolute top-[65%] right-[5%] animate-sparkle-1 scale-90" />
+                <PixelStar className="absolute top-[5%] right-[35%] animate-sparkle-3 scale-75" />
+                
+                {/* Additional Sparkles for more brightness */}
+                <PixelStar className="absolute top-[15%] right-[25%] animate-sparkle-6 scale-90" />
+                <PixelStar className="absolute top-[55%] left-[20%] animate-sparkle-7 scale-125" />
+                <PixelStar className="absolute bottom-[35%] left-[5%] animate-sparkle-8 scale-75" />
+                <PixelStar className="absolute bottom-[5%] right-[30%] animate-sparkle-2 scale-110" />
+                <PixelStar className="absolute top-[75%] left-[15%] animate-sparkle-4 scale-90" />
+                <PixelStar className="absolute top-[80%] right-[15%] animate-sparkle-6 scale-75" />
+                <PixelStar className="absolute top-[25%] left-[5%] animate-sparkle-7 scale-100" />
+                <PixelStar className="absolute top-[40%] right-[2%] animate-sparkle-5 scale-75" />
+                <PixelStar className="absolute bottom-[45%] right-[10%] animate-sparkle-8 scale-100" />
+                <PixelStar className="absolute top-[-5%] left-[45%] animate-sparkle-1 scale-90" />
+                <PixelStar className="absolute bottom-[10%] left-[45%] animate-sparkle-6 scale-75" />
+              </div>
+
               <Image
                 src="/images/logo.png"
                 alt="Coin Vault Pixel Chest Logo"
                 width={500}
                 height={500}
-                className="w-full object-contain pixelated drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]"
+                className="w-full object-contain pixelated drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)] relative z-20"
                 unoptimized
               />
             </div>
@@ -112,7 +144,7 @@ export default function LoginPage() {
 
       {/* Right Section: Crisp modern minimalist container for retro auth form */}
       <section
-        className="w-full lg:w-[58%] bg-[url('/images/bg.png')] bg-cover bg-center flex flex-col justify-between items-center p-6 sm:p-10 lg:p-14 relative"
+        className="w-full lg:w-[58%] bg-[url('/images/main_bg.png')] bg-cover bg-center flex flex-col justify-between items-center p-6 sm:p-10 lg:p-14 relative"
         data-purpose="login-form-wrapper"
       >
         <header className="w-full flex justify-end">
@@ -128,7 +160,7 @@ export default function LoginPage() {
         </header>
 
         <div className="w-full max-w-lg my-auto py-6">
-          <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] border border-slate-200/60 p-8 sm:p-12 transition-all" data-purpose="auth-card">
+          <div className="bg-white/40 backdrop-blur-lg rounded-3xl border-4 border-slate-900 shadow-[10px_10px_0_0_rgba(15,23,42,0.8)] p-8 sm:p-12 transition-all" data-purpose="auth-card">
             <div className="text-center mb-9">
               <h1 className="text-2xl sm:text-3xl font-pixel tracking-normal text-slate-900 leading-tight">
                 Bienvenido a<br />

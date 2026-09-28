@@ -101,4 +101,41 @@
     transform: translateY(2px);
     box-shadow: 0 1px 0 #1a1b1e;
   }
+
+  .animate-sparkle-1 {
+    animation: pixel-sparkle 1.5s infinite;
+  }
+  .animate-sparkle-2 {
+    animation: pixel-sparkle 1.8s infinite 0.4s;
+  }
+  .animate-sparkle-3 {
+    animation: pixel-sparkle 1.3s infinite 0.8s;
+  }
+  .animate-sparkle-4 {
+    animation: pixel-sparkle 1.6s infinite 0.2s;
+  }
+  .animate-sparkle-5 {
+    animation: pixel-sparkle 1.4s infinite 0.6s;
+  }
+  .animate-sparkle-6 {
+    animation: pixel-sparkle 1.2s infinite 0.1s;
+  }
+  .animate-sparkle-7 {
+    animation: pixel-sparkle 1.7s infinite 0.9s;
+  }
+  .animate-sparkle-8 {
+    animation: pixel-sparkle 1.5s infinite 0.5s;
+  }
+
+  @keyframes pixel-sparkle {
+    0%, 100% { 
+      opacity: 0; 
+      transform: scale(0.5); 
+    }
+    50% { 
+      opacity: 1; 
+      transform: scale(1.2); 
+      filter: brightness(1.2) drop-shadow(0 0 6px rgba(250, 204, 21, 0.8)); 
+    }
+  }
 }

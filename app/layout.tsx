@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="es"
       className={`${pressStart2P.variable} ${plusJakartaSans.variable} ${chakraPetch.variable} ${silkscreen.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans text-slate-800 overflow-x-hidden select-none bg-[url('/images/bg.png')] bg-cover bg-center bg-fixed bg-no-repeat bg-[#f1f5f9]">
+      <body className="min-h-full flex flex-col font-sans text-slate-800 overflow-x-hidden select-none bg-[url('/images/main_bg.png')] bg-cover bg-center bg-fixed bg-no-repeat bg-[#f1f5f9]">
         {children}
       </body>
     </html>
