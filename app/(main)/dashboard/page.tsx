@@ -59,8 +59,8 @@ export default async function DashboardPage() {
           quincenaId="q1"
           initialTitle={q1.title}
           initialDateText={q1.dateText}
-          headerColor="bg-[#93c5fd]"
-          subheaderColor="bg-[#dbeafe]"
+          headerColor="bg-[#facc15]"
+          subheaderColor="bg-[#fef08a]"
           initialMovements={q1.movements}
           categories={realCategories}
         />
@@ -68,8 +68,8 @@ export default async function DashboardPage() {
           quincenaId="q2"
           initialTitle={q2.title}
           initialDateText={q2.dateText}
-          headerColor="bg-[#86efac]"
-          subheaderColor="bg-[#bbf7d0]"
+          headerColor="bg-[#facc15]"
+          subheaderColor="bg-[#fef08a]"
           initialMovements={q2.movements}
           categories={realCategories}
         />
@@ -77,8 +77,8 @@ export default async function DashboardPage() {
           quincenaId="q3"
           initialTitle={q3.title}
           initialDateText={q3.dateText}
-          headerColor="bg-[#fca5a5]"
-          subheaderColor="bg-[#fecaca]"
+          headerColor="bg-[#facc15]"
+          subheaderColor="bg-[#fef08a]"
           initialMovements={q3.movements}
           categories={realCategories}
         />
@@ -86,8 +86,8 @@ export default async function DashboardPage() {
           quincenaId="q4"
           initialTitle={q4.title}
           initialDateText={q4.dateText}
-          headerColor="bg-[#c4b5fd]"
-          subheaderColor="bg-[#ddd6fe]"
+          headerColor="bg-[#facc15]"
+          subheaderColor="bg-[#fef08a]"
           initialMovements={q4.movements}
           categories={realCategories}
         />

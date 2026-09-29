@@ -133,9 +133,9 @@ export function QuincenaTable({
   }, [movements, categories]);
 
   return (
-    <div className="pixel-table-box bg-white rounded-xl flex flex-col hover:shadow-lg transition-shadow relative overflow-visible">
+    <div className="pixel-table-box flex flex-col relative overflow-visible">
       {/* Header */}
-      <div className={`${headerColor} p-3 border-b-2 border-black flex items-center space-x-3 rounded-t-xl relative`}>
+      <div className={`${headerColor} p-3 border-b-4 border-black flex items-center justify-center rounded-t-[4px] relative shadow-[inset_0_4px_0_rgba(255,255,255,0.5)]`}>
         {/* Save indicator badge */}
         {saveStatus !== "idle" && (
           <div className="absolute top-2 right-2 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/50 backdrop-blur-sm border border-black/10 text-[9px] font-bold text-gray-700 font-pixel shadow-sm transition-all animate-fade-in z-10">
@@ -153,10 +153,7 @@ export function QuincenaTable({
           </div>
         )}
 
-        <div className="w-9 h-9 bg-white border-2 border-black rounded-lg flex items-center justify-center text-lg shadow-sm shrink-0">
-          🗓️
-        </div>
-        <div className="flex flex-col flex-1 gap-1">
+        <div className="flex flex-col items-center justify-center w-full gap-1 text-center">
           {isEditingTitle ? (
             <input
               type="text"
@@ -165,11 +162,11 @@ export function QuincenaTable({
               onBlur={() => setIsEditingTitle(false)}
               onKeyDown={(e) => e.key === 'Enter' && setIsEditingTitle(false)}
               autoFocus
-              className="w-full bg-transparent font-bold text-base text-gray-900 leading-none focus:outline-none focus:ring-2 focus:ring-black/20 rounded font-pixel"
+              className="w-full bg-transparent font-bold text-base text-gray-900 leading-none focus:outline-none focus:ring-2 focus:ring-black/20 rounded font-pixel text-center"
             />
           ) : (
             <h2
-              className="font-bold text-base text-gray-900 leading-none cursor-pointer hover:underline decoration-dashed font-pixel"
+              className="font-bold text-base text-gray-900 leading-none cursor-pointer hover:underline decoration-dashed font-pixel text-center"
               onClick={() => setIsEditingTitle(true)}
               title="Haz clic para editar"
             >
@@ -185,11 +182,11 @@ export function QuincenaTable({
               onBlur={() => setIsEditingDate(false)}
               onKeyDown={(e) => e.key === 'Enter' && setIsEditingDate(false)}
               autoFocus
-              className="w-full bg-transparent text-xs font-semibold text-gray-700 focus:outline-none focus:ring-2 focus:ring-black/20 rounded font-pixel"
+              className="w-full bg-transparent text-xs font-semibold text-gray-700 focus:outline-none focus:ring-2 focus:ring-black/20 rounded font-pixel text-center"
             />
           ) : (
             <p
-              className="text-xs font-semibold text-gray-700 cursor-pointer hover:underline decoration-dashed font-pixel"
+              className="text-xs font-semibold text-gray-700 cursor-pointer hover:underline decoration-dashed font-pixel text-center"
               onClick={() => setIsEditingDate(true)}
               title="Haz clic para editar"
             >
@@ -200,14 +197,14 @@ export function QuincenaTable({
       </div>
 
       {/* Table Column Headers */}
-      <div className={`grid grid-cols-12 ${subheaderColor} border-b-2 border-black text-xs font-bold text-gray-800 py-1.5 px-2 font-pixel`}>
+      <div className={`grid grid-cols-12 ${subheaderColor} border-b-4 border-black text-[10px] sm:text-xs font-bold text-gray-800 py-2 px-2 font-pixel shadow-[inset_0_3px_0_rgba(255,255,255,0.4)]`}>
         <span className="col-span-2 text-center">#</span>
-        <span className="col-span-6">Concepto</span>
-        <span className="col-span-4 text-right">Monto</span>
+        <span className="col-span-6 text-center">CONCEPTO</span>
+        <span className="col-span-4 text-right pr-2">MONTO</span>
       </div>
 
       {/* Table Rows */}
-      <div className="divide-y divide-gray-200 text-xs sm:text-sm font-medium bg-white">
+      <div className="flex flex-col text-xs sm:text-sm font-medium bg-white">
         {movements.map((mov, idx) => {
           const type = getCategoryType(mov.concept_text);
           let bgClass = "bg-transparent";
@@ -216,7 +213,7 @@ export function QuincenaTable({
           else if (mov.concept_text.trim() !== "") bgClass = "bg-gray-100 border-b-2 border-gray-400 text-gray-800";
 
           return (
-            <div key={mov.id} className="grid grid-cols-12 px-2 py-1.5 items-center bg-white hover:bg-slate-50 transition-colors">
+            <div key={mov.id} className="grid grid-cols-12 px-2 py-2 items-center bg-white hover:bg-amber-50 transition-colors border-b-2 border-dashed border-gray-200 last:border-b-0 group">
               <span className="col-span-2 text-center text-gray-400 font-bold font-pixel text-[10px]">{idx + 1}</span>
               
               <div className="col-span-6 pr-2">
@@ -254,9 +251,9 @@ export function QuincenaTable({
       </div>
 
       {/* Total Footer */}
-      <div className="bg-[#dcfce7] border-t-2 border-black p-2 px-3 flex justify-between items-center text-sm font-bold text-gray-900 mt-auto rounded-b-xl z-20 relative">
-        <span className="font-pixel">Total</span>
-        <span className={`font-mono font-black text-base ${total < 0 ? 'text-red-600' : 'text-green-700'}`}>
+      <div className="bg-slate-900 border-t-4 border-black p-3 flex justify-between items-center text-sm font-bold text-white mt-auto rounded-b-[4px] z-20 relative shadow-[inset_0_4px_0_rgba(255,255,255,0.1)]">
+        <span className="font-pixel tracking-widest text-[#facc15] ml-1 mt-1">TOTAL</span>
+        <span className={`font-mono font-black text-xl sm:text-2xl drop-shadow-md ${total < 0 ? 'text-red-400' : 'text-green-400'}`}>
           {total < 0 ? "-" : ""}${Math.abs(total).toLocaleString('es-CO')}
         </span>
       </div>
